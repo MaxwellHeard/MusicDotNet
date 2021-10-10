@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace MusicDotNet.Models
 {
-    public class Album
+    public class Artist
     {
-        public int AlbumId { get; set; }
-        [Required]
-        public string Title { get; set; }
-        //FK
         public int ArtistId { get; set; }
+        [Required]
+        public string Name { get; set; }
+        //FK
+        public int AlbumId { get; set; }
         public int SongId { get; set; }
-        //Parent ref
-        public Artist Artist { get; set; }
         //Child ref
         public List<Song> Songs { get; set; }
+        public List<Album> Albums { get; set; }
     }
 }
