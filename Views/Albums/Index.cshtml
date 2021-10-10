@@ -1,0 +1,14 @@
+﻿@{ ViewData["Title"] = "Albums"; }
+<h1>@ViewData["Title"]</h1>
+
+<ul>
+    <li>
+        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 1">Album 1</a>
+    </li>
+    <li>
+        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 2">Album 2</a>
+    </li>
+    <li>
+        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 3">Album 3</a>
+    </li>
+</ul>
