@@ -23,7 +23,7 @@ namespace MusicDotNet.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Albums()
         {
             return View();
         }
