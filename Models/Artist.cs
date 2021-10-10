@@ -11,11 +11,9 @@ namespace MusicDotNet.Models
         public int ArtistId { get; set; }
         [Required]
         public string Name { get; set; }
-        //FK
-        public int AlbumId { get; set; }
-        public int SongId { get; set; }
+        public string Bio { get; set; }
+
         //Child ref
-        public List<Song> Songs { get; set; }
         public List<Album> Albums { get; set; }
     }
 }

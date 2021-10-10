@@ -1,17 +1,47 @@
-﻿@{ ViewData["Title"] = "Albums"; }
-<h1>@ViewData["Title"]</h1>
+﻿@model IEnumerable<MusicDotNet.Models.Album>
 
-<ul>
+@{
+    ViewData["Title"] = "Albums";
+}
 
+<h1>Albums</h1>
 
-
-    @*<li>
-        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 1">Album 1</a>
-    </li>
-    <li>
-        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 2">Album 2</a>
-    </li>
-    <li>
-        <a asp-controller="Albums" asp-action="ViewAlbum" asp-route-album="Album 3">Album 3</a>
-    </li>*@
-</ul>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Review)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Review)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Artist.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AlbumId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AlbumId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
