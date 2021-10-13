@@ -31,8 +31,8 @@
                 @Html.DisplayFor(modelItem => item.Bio)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a> |
+                <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a><br />
+                <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a><br />
                 <a asp-action="Delete" asp-route-id="@item.ArtistId">Delete</a>
             </td>
         </tr>
