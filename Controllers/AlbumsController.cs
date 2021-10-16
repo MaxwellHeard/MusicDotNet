@@ -24,7 +24,7 @@ namespace MusicDotNet.Controllers
         // GET: Albums
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Albums.Include(a => a.Artist);
+            var applicationDbContext = _context.Albums.Include(a => a.Artist).OrderBy(a => a.Title);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -104,7 +104,7 @@ namespace MusicDotNet.Controllers
             {
                 return NotFound();
             }
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "ArtistId", "Name", album.ArtistId);
+            ViewData["ArtistId"] = new SelectList(_context.Artists.OrderBy(a => a.Name), "ArtistId", "Name", album.ArtistId);
             return View(album);
         }
 

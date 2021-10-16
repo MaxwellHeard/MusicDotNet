@@ -38,7 +38,14 @@
             @Html.DisplayNameFor(model => model.AlbumArt):
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AlbumArt)
+            @if (Model.AlbumArt != null)
+            {
+                <img src="~/img/albums/@Model.AlbumArt" alt="Album Art" class="imgLg" />
+            }
+            else
+            {
+                <p>No Album Art Present</p>
+            }
         </dd>
 
     </dl>

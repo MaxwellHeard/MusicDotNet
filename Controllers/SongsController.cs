@@ -82,7 +82,7 @@ namespace MusicDotNet.Controllers
             {
                 return NotFound();
             }
-            ViewData["AlbumId"] = new SelectList(_context.Albums, "AlbumId", "Title", song.AlbumId);
+            ViewData["AlbumId"] = new SelectList(_context.Albums.OrderBy(a => a.Title), "AlbumId", "Title", song.AlbumId);
             return View(song);
         }
 
