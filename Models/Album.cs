@@ -13,6 +13,7 @@ namespace MusicDotNet.Models
         [Required]
         public string Title { get; set; }
         public string Review { get; set; }
+        public double Length { get; set; }
 
         //FK
         public int ArtistId { get; set; }

@@ -1,6 +1,31 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+h1, p {
+    color: white;
+}
+
+/*links not in tables*/
+p a {
+    text-decoration: underline;
+}
+p a:hover {
+    color: darkslategrey;
+}
+
+/*links in tables*/
+td>a {
+    text-decoration: underline;
+}
+td>a:hover {
+    color: lightslategray
+}
+
+/*links in details and delete*/
+div>a:hover, dd>a:hover, form>a:hover {
+    color: darkslategrey
+}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -8,8 +33,8 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+a{
+  color: white;
 }
 
 .btn-primary {
@@ -59,9 +84,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;

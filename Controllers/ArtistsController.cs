@@ -54,7 +54,7 @@ namespace MusicDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtistId,Name,Bio")] Artist artist)
+        public async Task<IActionResult> Create([Bind("ArtistId,Name,Bio,Genres")] Artist artist)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace MusicDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,Name,Bio")] Artist artist)
+        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,Name,Bio,Genres")] Artist artist)
         {
             if (id != artist.ArtistId)
             {

@@ -17,6 +17,9 @@ namespace MusicDotNet.Models
         [Range(0.01, 9999999)]
         public double Length { get; set; }
 
+        [Required]
+        public int TrackNo { get; set; }
+
         //FK
         public int AlbumId { get; set; }
 
