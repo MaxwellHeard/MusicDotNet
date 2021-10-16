@@ -8,3 +8,5 @@ Sortable tables from https://www.kryogenix.org/code/browser/sorttable/
 
 Images source from https://en.wikipedia.org/
 
+Site deployed at https://musicdotnet.azurewebsites.net/
+
