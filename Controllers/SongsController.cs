@@ -22,7 +22,7 @@ namespace MusicDotNet.Controllers
         // GET: Songs
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Songs.Include(s => s.Album);
+            var applicationDbContext = _context.Songs.Include(s => s.Album).OrderBy(s => s.Album).ThenBy(s => s.TrackNo);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -48,7 +48,7 @@ namespace MusicDotNet.Controllers
         // GET: Songs/Create
         public IActionResult Create()
         {
-            ViewData["AlbumId"] = new SelectList(_context.Albums, "AlbumId", "Title");
+            ViewData["AlbumId"] = new SelectList(_context.Albums.OrderBy(a => a.Title), "AlbumId", "Title");
             return View();
         }
 

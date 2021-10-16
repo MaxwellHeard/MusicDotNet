@@ -21,6 +21,7 @@ namespace MusicDotNet.Models
         public int TrackNo { get; set; }
 
         //FK
+        [Display(Name = "Album")]
         public int AlbumId { get; set; }
 
         //Parent ref

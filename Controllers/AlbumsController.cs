@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -48,7 +50,7 @@ namespace MusicDotNet.Controllers
         // GET: Albums/Create
         public IActionResult Create()
         {
-            ViewData["ArtistId"] = new SelectList(_context.Artists, "ArtistId", "Name");
+            ViewData["ArtistId"] = new SelectList(_context.Artists.OrderBy(a => a.Name), "ArtistId", "Name");
             return View();
         }
 
@@ -57,16 +59,36 @@ namespace MusicDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AlbumId,Title,Review,Length,ArtistId")] Album album)
+        public async Task<IActionResult> Create([Bind("AlbumId,Title,Review,Length,ArtistId")] Album album, IFormFile AlbumArt)
         {
             if (ModelState.IsValid)
             {
+                if (AlbumArt != null)
+                {
+                    var fileName = UploadAlbumArt(AlbumArt);
+                    album.AlbumArt = fileName;
+                }
                 _context.Add(album);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ArtistId"] = new SelectList(_context.Artists, "ArtistId", "Name", album.ArtistId);
             return View(album);
+        }
+
+        private static string UploadAlbumArt(IFormFile Image)
+        {
+            var filePath = Path.GetTempFileName(); //get uploaded file
+            var fileName = Guid.NewGuid() + "-" + Image.FileName; //generate unique name
+            var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\albums\\" + fileName; //set the destination path
+
+            //execute file transfer
+            using (var stream = new FileStream(uploadPath, FileMode.Create))
+            {
+                Image.CopyTo(stream);
+            }
+
+            return fileName;
         }
 
         // GET: Albums/Edit/5
@@ -91,7 +113,7 @@ namespace MusicDotNet.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AlbumId,Title,Review,Length,ArtistId")] Album album)
+        public async Task<IActionResult> Edit(int id, [Bind("AlbumId,Title,Review,Length,ArtistId")] Album album, IFormFile AlbumArt)
         {
             if (id != album.AlbumId)
             {
@@ -102,6 +124,11 @@ namespace MusicDotNet.Controllers
             {
                 try
                 {
+                    if (AlbumArt != null)
+                    {
+                        var fileName = UploadAlbumArt(AlbumArt);
+                        album.AlbumArt = fileName;
+                    }
                     _context.Update(album);
                     await _context.SaveChangesAsync();
                 }

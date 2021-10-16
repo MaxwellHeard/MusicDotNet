@@ -15,6 +15,9 @@ namespace MusicDotNet.Models
         public string Review { get; set; }
         public double Length { get; set; }
 
+        [Display(Name = "Album Art")]
+        public string AlbumArt { get; set; }
+
         //FK
         public int ArtistId { get; set; }
 

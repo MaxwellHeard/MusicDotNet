@@ -14,6 +14,9 @@ namespace MusicDotNet.Models
         public string Bio { get; set; }
         public string Genres { get; set; }
 
+        [Display(Name = "Image")]
+        public string ArtistImage { get; set; }
+
         //Child ref
         public List<Album> Albums { get; set; }
     }

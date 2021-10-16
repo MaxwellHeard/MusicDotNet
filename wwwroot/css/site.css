@@ -14,16 +14,28 @@ p a:hover {
 }
 
 /*links in tables*/
-td>a {
+td>a, th>a {
     text-decoration: underline;
 }
-td>a:hover {
+td>a:hover, th>a:hover {
     color: lightslategray
 }
 
 /*links in details and delete*/
+div > a, dd > a, form > a {
+    text-decoration: underline;
+}
 div>a:hover, dd>a:hover, form>a:hover {
     color: darkslategrey
+}
+
+/*image sizing*/
+.imgLg {
+    width: 250px;
+}
+
+.imgSm {
+    width: 100px; 
 }
 
 a.navbar-brand {

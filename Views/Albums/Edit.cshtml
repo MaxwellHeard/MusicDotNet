@@ -1,22 +1,27 @@
 ﻿@model MusicDotNet.Models.Album
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Album";
 }
 
-<h1>Edit</h1>
+<h1>Edit Album</h1>
 
 <h4>Album</h4>
 <hr />
 <div class="row">
-    <div class="col-lg-4">
-        <form asp-action="Edit">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AlbumId" />
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArtistId" class="control-label"></label>
+                <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.ArtistId"></select>
+                <span asp-validation-for="ArtistId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Review" class="control-label"></label>
@@ -29,9 +34,13 @@
                 <span asp-validation-for="Length" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArtistId" class="control-label"></label>
-                <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.ArtistId"></select>
-                <span asp-validation-for="ArtistId" class="text-danger"></span>
+                <label asp-for="AlbumArt" class="control-label"></label>
+                <input asp-for="AlbumArt" class="form-control" type="file" />
+                <span asp-validation-for="AlbumArt" class="text-danger"></span>
+                @if (Model.AlbumArt != null)
+                {
+                    <img src="~/img/albums/@Model.AlbumArt" alt="Album Art" class="imgLg" />
+                }
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
