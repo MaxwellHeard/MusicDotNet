@@ -13,6 +13,8 @@ namespace MusicDotNet.Models
         [Required]
         public string Title { get; set; }
         public string Review { get; set; }
+
+        [Range(0.01, 9999999)]
         public double Length { get; set; }
 
         [Display(Name = "Album Art")]

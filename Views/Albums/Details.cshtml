@@ -4,10 +4,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Album Details</h1>
 
 <div>
-    <h4>Album</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -41,6 +40,10 @@
             @if (Model.AlbumArt != null)
             {
                 <img src="~/img/albums/@Model.AlbumArt" alt="Album Art" class="imgLg" />
+            }
+            else
+            {
+                <p>No Album Art Present</p>
             }
         </dd>
     </dl>

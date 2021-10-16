@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-h1, p {
+h1, p, h2 {
     color: white;
 }
 
@@ -22,7 +22,7 @@ td>a:hover, th>a:hover {
 }
 
 /*links in details and delete*/
-div > a, dd > a, form > a {
+div>a, dd>a, form>a {
     text-decoration: underline;
 }
 div>a:hover, dd>a:hover, form>a:hover {
@@ -33,7 +33,6 @@ div>a:hover, dd>a:hover, form>a:hover {
 .imgLg {
     width: 250px;
 }
-
 .imgSm {
     width: 100px; 
 }

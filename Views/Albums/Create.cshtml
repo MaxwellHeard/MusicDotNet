@@ -4,35 +4,34 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Add Album</h1>
 
-<h4>Album</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Title:</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArtistId" class="control-label"></label>
+                <label asp-for="ArtistId" class="control-label">Artist:</label>
                 <select asp-for="ArtistId" class="form-control" asp-items="ViewBag.ArtistId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Review" class="control-label"></label>
+                <label asp-for="Review" class="control-label">Review:</label>
                 <textarea asp-for="Review" class="form-control"></textarea>
                 <span asp-validation-for="Review" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Length" class="control-label"></label>
+                <label asp-for="Length" class="control-label">Length:</label>
                 <input asp-for="Length" class="form-control" />
                 <span asp-validation-for="Length" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AlbumArt" class="control-label"></label>
+                <label asp-for="AlbumArt" class="control-label">Album Art:</label>
                 <input asp-for="AlbumArt" class="form-control" type="file" />
                 <span asp-validation-for="AlbumArt" class="text-danger"></span>
             </div>

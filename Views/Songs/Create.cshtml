@@ -4,31 +4,30 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Add Song</h1>
 
-<h4>Song</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Title:</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Length" class="control-label"></label>
+                <label asp-for="Length" class="control-label">Length:</label>
                 <input asp-for="Length" class="form-control" />
                 <span asp-validation-for="Length" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TrackNo" class="control-label"></label>
+                <label asp-for="TrackNo" class="control-label">Track No:</label>
                 <input asp-for="TrackNo" class="form-control" />
                 <span asp-validation-for="TrackNo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AlbumId" class="control-label"></label>
+                <label asp-for="AlbumId" class="control-label">Album:</label>
                 <select asp-for="AlbumId" class ="form-control" asp-items="ViewBag.AlbumId"></select>
             </div>
             <div class="form-group">

@@ -4,31 +4,30 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create Artist</h1>
 
-<h4>Artist</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Name:</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Bio" class="control-label"></label>
+                <label asp-for="Bio" class="control-label">Bio:</label>
                 <textarea asp-for="Bio" class="form-control"></textarea>
                 <span asp-validation-for="Bio" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Genres" class="control-label"></label>
+                <label asp-for="Genres" class="control-label">Genres:</label>
                 <textarea asp-for="Genres" class="form-control"></textarea>
                 <span asp-validation-for="Genres" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ArtistImage" class="control-label"></label>
+                <label asp-for="ArtistImage" class="control-label">Image:</label>
                 <input asp-for="ArtistImage" class="form-control" type="file" />
                 <span asp-validation-for="ArtistImage" class="text-danger"></span>
             </div>
