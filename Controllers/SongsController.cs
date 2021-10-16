@@ -22,7 +22,7 @@ namespace MusicDotNet.Controllers
         // GET: Songs
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Songs.Include(s => s.Album).OrderBy(s => s.Album).ThenBy(s => s.TrackNo);
+            var applicationDbContext = _context.Songs.Include(s => s.Album).OrderBy(s => s.Album.Title).ThenBy(s => s.TrackNo);
             return View(await applicationDbContext.ToListAsync());
         }
 
