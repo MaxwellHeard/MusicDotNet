@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using MusicDotNet.Models;
 
 namespace MusicDotNet.Controllers
 {
+    [Authorize]
     public class AlbumsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +24,7 @@ namespace MusicDotNet.Controllers
         }
 
         // GET: Albums
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Albums.Include(a => a.Artist).OrderBy(a => a.Title);
@@ -29,6 +32,7 @@ namespace MusicDotNet.Controllers
         }
 
         // GET: Albums/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
