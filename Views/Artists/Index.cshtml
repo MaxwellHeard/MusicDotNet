@@ -7,7 +7,11 @@
 <h1>Artists</h1>
 
 <p>
-    <a asp-action="Create">Add Artist</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Add Artist</a>
+
+    }
 </p>
 <table class="table table-dark table-striped sortable">
     <thead>
@@ -36,11 +40,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Genres)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a><br />
-                <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a><br />
-                <a asp-action="Delete" asp-route-id="@item.ArtistId">Delete</a>
-            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ArtistId">Edit</a><br />
+                    <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a><br />
+                    <a asp-action="Delete" asp-route-id="@item.ArtistId">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ArtistId">Details</a>
+                </td>
+            }
+
         </tr>
 }
     </tbody>

@@ -7,7 +7,11 @@
 <h1>Albums</h1>
 
 <p>
-    <a asp-action="Create">Add Album</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Add Album</a>
+
+    }
 </p>
 <table class="table table-dark table-striped sortable">
     <thead>
@@ -27,29 +31,40 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @if (item.AlbumArt != null)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.AlbumArt != null)
+                    {
+                        <img src="~/img/albums/@item.AlbumArt" alt="Album Art" class="imgSm" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist.Name)
+                </td>
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <img src="~/img/albums/@item.AlbumArt" alt="Album Art" class="imgSm" />
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.AlbumId">Edit</a><br />
+                        <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a><br />
+                        <a asp-action="Delete" asp-route-id="@item.AlbumId">Delete</a>
+                    </td>
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Length)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Artist.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AlbumId">Edit</a><br />
-                <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a><br />
-                <a asp-action="Delete" asp-route-id="@item.AlbumId">Delete</a>
-            </td>
-        </tr>
-}
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.AlbumId">Details</a>
+
+                    </td>
+                }
+            </tr>
+        }
     </tbody>
 </table>

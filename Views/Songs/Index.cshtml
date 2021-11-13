@@ -7,7 +7,10 @@
 <h1>Songs</h1>
 
 <p>
-    <a asp-action="Create">Add Song</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Add Song</a>
+    }
 </p>
 <table class="table table-dark table-striped sortable">
     <thead>
@@ -42,11 +45,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Album.Title)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.SongId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SongId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SongId">Delete</a>
-            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SongId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SongId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.SongId">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.SongId">Details</a>
+                </td>
+            }
         </tr>
 }
     </tbody>
