@@ -60,6 +60,10 @@ a{
   border-color: #1861ac;
 }
 
+.text-info {
+    color: darkslategrey;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
