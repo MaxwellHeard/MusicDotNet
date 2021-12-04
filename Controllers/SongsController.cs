@@ -26,7 +26,7 @@ namespace MusicDotNet.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Songs.Include(s => s.Album).OrderBy(s => s.Album.Title).ThenBy(s => s.TrackNo);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         // GET: Songs/Details/5
@@ -35,7 +35,7 @@ namespace MusicDotNet.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
             var song = await _context.Songs
@@ -46,14 +46,14 @@ namespace MusicDotNet.Controllers
                 return NotFound();
             }
 
-            return View(song);
+            return View("Details", song);
         }
 
         // GET: Songs/Create
         public IActionResult Create()
         {
             ViewData["AlbumId"] = new SelectList(_context.Albums.OrderBy(a => a.Title), "AlbumId", "Title");
-            return View();
+            return View("Create");
         }
 
         // POST: Songs/Create
@@ -70,7 +70,7 @@ namespace MusicDotNet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AlbumId"] = new SelectList(_context.Albums, "AlbumId", "Title", song.AlbumId);
-            return View(song);
+            return View("Create", song);
         }
 
         // GET: Songs/Edit/5
