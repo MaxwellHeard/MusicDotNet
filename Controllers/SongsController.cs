@@ -35,7 +35,7 @@ namespace MusicDotNet.Controllers
         {
             if (id == null)
             {
-                return View("Error");
+                return View("404");
             }
 
             var song = await _context.Songs
@@ -43,7 +43,7 @@ namespace MusicDotNet.Controllers
                 .FirstOrDefaultAsync(m => m.SongId == id);
             if (song == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             return View("Details", song);
@@ -78,16 +78,16 @@ namespace MusicDotNet.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var song = await _context.Songs.FindAsync(id);
             if (song == null)
             {
-                return NotFound();
+                return View("404");
             }
             ViewData["AlbumId"] = new SelectList(_context.Albums.OrderBy(a => a.Title), "AlbumId", "Title", song.AlbumId);
-            return View(song);
+            return View("Edit", song);
         }
 
         // POST: Songs/Edit/5
@@ -99,7 +99,7 @@ namespace MusicDotNet.Controllers
         {
             if (id != song.SongId)
             {
-                return NotFound();
+                return View("Error");
             }
 
             if (ModelState.IsValid)
@@ -113,7 +113,7 @@ namespace MusicDotNet.Controllers
                 {
                     if (!SongExists(song.SongId))
                     {
-                        return NotFound();
+                        return View("404");
                     }
                     else
                     {
@@ -123,7 +123,7 @@ namespace MusicDotNet.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AlbumId"] = new SelectList(_context.Albums, "AlbumId", "Title", song.AlbumId);
-            return View(song);
+            return View("Edit", song);
         }
 
         // GET: Songs/Delete/5
@@ -131,7 +131,7 @@ namespace MusicDotNet.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
             var song = await _context.Songs
@@ -139,10 +139,10 @@ namespace MusicDotNet.Controllers
                 .FirstOrDefaultAsync(m => m.SongId == id);
             if (song == null)
             {
-                return NotFound();
+                return View("Error");
             }
 
-            return View(song);
+            return View("Delete", song);
         }
 
         // POST: Songs/Delete/5
